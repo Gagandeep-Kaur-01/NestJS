@@ -13,30 +13,33 @@ export class StudentsService {
     private studentRepository: Repository<StudentInterface>,
   ) {}
 
-create(student: StudentInterface): Promise<StudentInterface> {
-    return this.studentRepository.save(
-      this.studentRepository.create(student)
-    );
-  }
-findAll(): Promise<StudentInterface[]> {
-    return this.studentRepository.find();
-  }
-update(id: string, data: any): Promise<any> {
-    return this.studentRepository
-    .createQueryBuilder()
-    .update()
-    .set({
-      name: data.name
-    })
-    .where('id = :id', { id })
-    .execute()
-  }
-delete(id: string): Promise<any> {
-    return this.studentRepository
-    .createQueryBuilder()
-    .delete()
-    .from(Student)
-    .where('id = :id', { id })
-    .execute()
-  }
+    create(student: StudentInterface): Promise<StudentInterface> {
+        return this.studentRepository.save(
+        this.studentRepository.create(student)
+        );
+    }
+
+    findAll(): Promise<StudentInterface[]> {
+        return this.studentRepository.find();
+    }
+
+    update(id: string, data: any): Promise<any> {
+        return this.studentRepository
+        .createQueryBuilder()
+        .update()
+        .set({
+        name: data.name
+        })
+        .where('id = :id', { id })
+        .execute()
+    }
+    
+    delete(id: string): Promise<any> {
+        return this.studentRepository
+        .createQueryBuilder()
+        .delete()
+        .from(Student)
+        .where('id = :id', { id })
+        .execute()
+    }
 }
